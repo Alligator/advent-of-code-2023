@@ -29,6 +29,35 @@ def part1(input)
   puts "part 1: #{locations.min}\n"
 end
 
+def part2(input)
+  sections = input.split("\n\n")
+  @seed_groups = sections[0].scan(/\d+/).map(&:to_i).each_slice(2).to_a
+  range_groups = sections[1..].map { |x| parse_section(x) }
+
+  def seed?(n)
+    @seed_groups.any? { |seed_group| n >= seed_group[0] and n < (seed_group[0] + seed_group[1]) }
+  end
+
+  (0..1_000_000_000).each do |loc|
+    current_id = loc
+    range_groups.reverse_each do |ranges|
+      ranges.each do |range|
+        dst_start, src_start, len = range
+        if current_id >= dst_start and current_id < dst_start + len then
+          current_id = (current_id - dst_start) + src_start
+          break
+        end
+      end
+    end
+    if seed?(current_id)
+      puts "part 2: #{loc}\n"
+      return
+    end
+  end
+
+  puts "uh oh"
+end
+
 testInput = "seeds: 79 14 55 13
 
 seed-to-soil map:
@@ -65,3 +94,6 @@ humidity-to-location map:
 
 part1(testInput)
 part1(File.read("day5.txt"))
+
+part2(testInput)
+part2(File.read("day5.txt"))
