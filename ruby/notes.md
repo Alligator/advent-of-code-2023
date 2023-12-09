@@ -47,3 +47,13 @@ i enjoyed this one.
 i wanted to find a single ranking that handled both the hand type and the highest card. i did that by mapping each card to a hex digit, then adding the type (four of a kind etc) to the front, so it took precedence.
 
 part 2 was pretty nice too. i could just count the jokers and add them in for each case (e.g. three cards + two jokers = five of a kind).
+
+## day 8
+
+another fun one.
+
+part 1 easy, traverse a tree.
+
+part 2 needed some thinking. my answer took 21 trillion steps, not something i could brute force. i noticed that each node reaches one that ends in a Z in a cycle (every 2nd step, every 3rd step, etc). i'm not sure why this is. maybe the puzzle is generated so they always cycle?
+
+anyway, if they go in cycles, i only need to process each node until it reaches the end, then i can save how many steps that took and stop processing it. when they're all done, i find the least common multiple of all those numbers and that's the number of steps.
