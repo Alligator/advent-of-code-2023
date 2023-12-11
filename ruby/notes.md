@@ -57,3 +57,9 @@ part 1 easy, traverse a tree.
 part 2 needed some thinking. my answer took 21 trillion steps, not something i could brute force. i noticed that each node reaches one that ends in a Z in a cycle (every 2nd step, every 3rd step, etc). i'm not sure why this is. maybe the puzzle is generated so they always cycle?
 
 anyway, if they go in cycles, i only need to process each node until it reaches the end, then i can save how many steps that took and stop processing it. when they're all done, i find the least common multiple of all those numbers and that's the number of steps.
+
+## day 9
+
+odd one. the puzzle gives the algorithm, all i had to do was implement it.
+
+i expected part 2 to make the problem too difficult to simply iterate over. nope, it's a slight variation of the algorithm that is no more complex.
